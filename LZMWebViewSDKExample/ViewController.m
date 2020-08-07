@@ -27,7 +27,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test.html" ofType:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test_1.html" ofType:@""];
     [_webSDK loadHTMLWithPath:path withCurrentNavigationVC:self.navigationController];
     
     

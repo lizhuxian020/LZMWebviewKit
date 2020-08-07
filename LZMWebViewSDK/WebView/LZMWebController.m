@@ -267,39 +267,39 @@ static BOOL isReload_webView = NO;
     }
 }
 
-//#pragma mark - delegate
-///** 页面加载完成 */
-//- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-//    /** 不执行前段界面弹出列表的JS代码 */
-//    [webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none'" completionHandler:nil];
-//    if ([webView.URL.absoluteString.lowercaseString isEqualToString:@"about:blank"]) {
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//        [webView.backForwardList performSelector:NSSelectorFromString(@"_removeAllItems")];
-//#pragma clang diagnostic pop
-//    }
-//
-//    NSString *htmlTitle = @"document.title";
-//    [webView evaluateJavaScript:htmlTitle completionHandler:^(NSString * _Nullable title, NSError * _Nullable error) {
-//        if (!webView.canGoBack) {
-//            self.navView.titleStr = LZMStrIsNotEmpty(self.naviTitle) ? self.naviTitle : title;
-//        }else {
-//            self.navView.titleStr = title;
-//        }
+#pragma mark - delegate
+/** 页面加载完成 */
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    /** 不执行前段界面弹出列表的JS代码 */
+    [webView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='none'" completionHandler:nil];
+    if ([webView.URL.absoluteString.lowercaseString isEqualToString:@"about:blank"]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [webView.backForwardList performSelector:NSSelectorFromString(@"_removeAllItems")];
+#pragma clang diagnostic pop
+    }
+
+    NSString *htmlTitle = @"document.title";
+    [webView evaluateJavaScript:htmlTitle completionHandler:^(NSString * _Nullable title, NSError * _Nullable error) {
+        if (!webView.canGoBack) {
+            self.navView.titleStr = self.naviTitle ? self.naviTitle : title;
+        }else {
+            self.navView.titleStr = title;
+        }
 //        self.webShareModel.shareTitle = title;
-//    }];
-//
-//    NSString *htmlUrl = @"document.location.href";
-//    WEAK_SELF(self);
-//    [webView evaluateJavaScript:htmlUrl completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-//        STRONG_SELF(self);
-//        /** 只为行政解忧使用 */
-//        if (!LZMObjectIsNil(response)&&self.isGrocery) {
-//            self.currentURLString = response;
-//        }
-//    }];
-//}
-//
+    }];
+
+    NSString *htmlUrl = @"document.location.href";
+    kWeakSelf
+    [webView evaluateJavaScript:htmlUrl completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        kStrongSelf
+        /** 只为行政解忧使用 */
+        if (!response&&self.isGrocery) {
+            strongSelf.currentURLString = response;
+        }
+    }];
+}
+
 ///** 页面加载失败 */
 //- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error{
 //    /** 异步加载取消的时候,会报这个错误 NSURLErrorCancelled做正常操作,相反做异常处理 */
@@ -327,17 +327,11 @@ static BOOL isReload_webView = NO;
         [functionHandle handleJsFunctionWitMethdName:message.name withjsCallbackName:message.body forObjDict:dictP];
     }
 }
-//
-///** 页面发送请求之前，决定是否跳转 */
-//- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-//
-//    //不为web支付流程
-//    if(![self checkWebPayForNavigationAction:navigationAction decisionHandler:decisionHandler]) {
-//        NSURL *requestUrl = navigationAction.request.URL;
-//        [LZMWebViewHelper underRequestUrlHandleEvent:requestUrl controller:self];
-//        decisionHandler(WKNavigationActionPolicyAllow);
-//    }
-//}
+
+/** 页面发送请求之前，决定是否跳转 */
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
 //
 ///// 检查是否为web支付
 //- (BOOL)checkWebPayForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler

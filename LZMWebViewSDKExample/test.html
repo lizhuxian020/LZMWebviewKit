@@ -1,11 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<a href="zzstc://{action:&quot jump&quot,params:{&quot jumpId&quot:&quot 50 &quot, &quot jumpType &quot:2, &quot infoUrl &quot:&quot&quot}}">ajdklasjdkja</a>
+<html>
 
-</body>
+    <head>
+        <meta http-equiv="Content-Type" charset="UTF-8"/>
+
+        <script type="text/javascript">
+            var s = '我来自Js方法';
+            function returnUserInfo(param){
+                 document.getElementById("textshow").innerHTML = (param);
+                 //window.android.JsToJavaInterface(s)
+            }
+			
+			
+			  function jstojavaprompt(param){
+             result = prompt(param);
+             document.getElementById("textshow").innerHTML = (result);
+        }
+
+
+        </script>
+    </head>
+
+    <body>
+
+        <h3>Js Method</h3>
+        <h3 id="textshow" onclick="document.location='zzstc://api?getUserInfo'">调用结果</h3>
+
+    </body>
+
 </html>

@@ -1,0 +1,24 @@
+<body>
+<p style="line-height: 1.6;">
+    <video poster="http://chuneng-dev.oss-cn-shenzhen.aliyuncs.com/business/UGC/20200720/1595295470066.mp4?x-oss-process=video/snapshot,t_10000,m_fast"
+           controls="controls" width="300" height="150">NaN
+    </video>
+</p>
+<p style="line-height: 1.6;">&nbsp;</p>
+<button onclick = "pay()" style = "font-size: 18px;">支付</button>
+<button onclick = "login()" style = "font-size: 18px;">获取用户信息</button>
+<button onclick = "login()" style = "font-size: 18px;">获取</button>
+<button onclick = "login()" style = "font-size: 18px;">支付</button>
+<p style="line-height: 1.6;"><a
+        href="zzstc://{action:&quot;jump&quot;,params:{&quot;jumpId&quot;:&quot;50&quot;,&quot;jumpType&quot;:2,&quot;infoUrl&quot;:&quot;&quot;}}">zzstc://=jump&amp;jumpType=2081&amp;jumpId=1</a>
+</p>
+<p style="line-height: 1.6;"><a title="7667" href="zzstc://a?action=jump&amp;jumpType=2081&amp;jumpId=1">667</a></p>
+</body>
+
+<script>
+    //! 登录成功
+    function pay() {
+      var action = "pay";
+      window.webkit.messageHandlers.pay.postMessage(action);
+    }
+</script>

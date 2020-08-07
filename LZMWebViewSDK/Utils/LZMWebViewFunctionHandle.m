@@ -30,7 +30,7 @@ static NSString *const kJSRequestScanQrCodeFunction  = @"requestScanQrCode";
 
     _webView        = objDict[@"webView"];
     _controller     = objDict[@"ctr"];
-    _jsCallbackName = !callbackName ? callbackName : @"";
+    _jsCallbackName = callbackName ? callbackName : @"";
     
     if ([functioNname isEqualToString:kJSRefreshTokenFunction]) {
         [self JsRefreshTokenFunction_handle];

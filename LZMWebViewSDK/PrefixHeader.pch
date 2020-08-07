@@ -16,6 +16,7 @@
 /******************本SDK独用**************/
 #import "LZMSDKUtils.h"
 #import "LZMWebSDK.h"
+#import "NSString+LZMWebViewSDK.h"
 //#import "SDK_Private_Define.h"
 
 /******************依赖第三方**************/
@@ -27,6 +28,7 @@
                 green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 \
                  blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:1.0]
 #define kNavi_BG_Color LZMColor(0xF3F8F9)
+#define LZMColor_C1 UIColor.redColor
 #define LZMColor_C4 LZMColor(0x333333)
 #define LZMColor_C5 LZMColor(0x666666)
 #define LZMColor_C6 LZMColor(0x999999)

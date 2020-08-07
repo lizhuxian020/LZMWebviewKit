@@ -24,4 +24,8 @@
     return sdk;
 }
 
+- (void)loadURL:(NSURL *)url {
+    
+}
+
 @end

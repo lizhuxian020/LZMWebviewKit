@@ -25,7 +25,7 @@
     NSArray *path = [NSBundle allBundles];
     NSLog(@"%@", main);
 //    [LZMSDKUtils shareUtils].;
-//    NSLog(@"%@", LZMImage(@"meeting_room_detail_icon"));
+    NSLog(@"%@", LZMImage(@"meeting_room_detail_icon"));
 }
 
 /*

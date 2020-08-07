@@ -17,3 +17,6 @@ FOUNDATION_EXPORT const unsigned char LZMWebViewSDKVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <LZMWebViewSDK/PublicHeader.h>
 
 
+#import <LZMWebViewSDK/LZMTestViewController.h>
+#import <LZMWebViewSDK/LZMWebSDK.h>
+

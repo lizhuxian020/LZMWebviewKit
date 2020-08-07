@@ -27,7 +27,6 @@
     NSString *assetBundle_path = [[NSBundle mainBundle] pathForResource:@"LZMWebViewSDK" ofType:@"bundle"];
     NSBundle *assetBundle = [NSBundle bundleWithPath:assetBundle_path];
     if (!assetBundle) {
-//        NSLog(@"LZMWebViewSDK: Get_ERROR_Bundle");
         SDK_LOG(@"LZMWebViewSDK: Get_ERROR_Bundle");
         return nil;
     }
@@ -66,6 +65,22 @@
         default:
             return [UIFont boldSystemFontOfSize:size];
     }
+}
+
++ (void)makePhoneCall:(NSString *)phoneNum{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIWindow *window = [UIApplication  sharedApplication].delegate.window;
+        NSMutableString * str ;
+        if ([phoneNum hasPrefix:@"tel"]){
+            str = [NSMutableString stringWithFormat:@"%@", phoneNum];
+        }else{
+            str = [[NSMutableString alloc] initWithFormat:@"tel:%@",phoneNum];
+        }
+        UIWebView * callWebview = [[UIWebView alloc] init];
+        callWebview.tag = 1314;
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+        [window addSubview:callWebview];
+    });
 }
 
 @end

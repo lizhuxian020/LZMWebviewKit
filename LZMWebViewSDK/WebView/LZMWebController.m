@@ -7,8 +7,9 @@
 //
 
 #import "LZMWebController.h"
-//#import "WkScriptMessageDelegate.h"
+#import "WkScriptMessageDelegate.h"
 #import "LZMWebViewNavView.h"
+#import "LZMWebViewHelper.h"
 //#import "LZMWebViewFunctionHandle.h"
 //#import "LZMWebPayService.h"
 
@@ -43,22 +44,21 @@ static BOOL isReload_webView = NO;
     [self createSubView];
 
     [self webview_LoadRequest];
-//
-//    [self gestureHandle];
 
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadPayDoneWeb:) name:kYiJiaBeActivateNotification object:nil];
+    [self gestureHandle];
+
 }
-//
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:true animated:true];
-//}
-//
-//- (void)viewDidDisappear:(BOOL)animated{
-//    [super viewDidDisappear:animated];
-//    [self pauseHtmlMusic];
-//}
-//
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:true animated:true];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self pauseHtmlMusic];
+}
+
 - (void)createSubView {
     self.view.backgroundColor = LZMColor_C10;
     [self.view addSubview:self.navView];
@@ -78,91 +78,85 @@ static BOOL isReload_webView = NO;
         make.height.mas_equalTo(1.5f);
     }];
 }
-//
-//- (void)dealloc {
-//    if (_webView) {
-//        if(self.webView.scrollView.delegate)self.webView.scrollView.delegate = nil;
-//        if(self.webView.navigationDelegate) self.webView.navigationDelegate = nil;
-//        if(self.webView.UIDelegate) self.webView.UIDelegate = nil;
-//        [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
-//        [self pauseHtmlMusic];
-//        [self.webView.configuration.userContentController removeAllUserScripts];
-//        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kJSPayFunction];
-//        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kJSCloseFunction];
-//    }
-//
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
-//
-//#pragma mark - public
-///** 重新加载 */
-//- (void)reload_WebView {
-//    isReload_webView = true;
-//    [self.webView reload];
-//}
-//
-///** 重新加载网页,忽略缓存 */
-//- (void)reload_FromOrigin {
-//    isReload_webView = true;
-//    [self.webView reloadFromOrigin];
-//}
-//
-//- (void)setBottomShow:(BOOL)bottomShow {
-//    _bottomShow = bottomShow;
-//}
-//
-//- (void)setNavItemStyle:(NSInteger)navItemStyle {
-//    _navItemStyle = navItemStyle;
-//}
-//
-//- (void)loadRequestURL:(NSMutableURLRequest *)request {
-//     NSString *Domain = request.URL.host;
-//    _webView = _webView ? _webView : self.webView;
-//    /** 插入cookies  */
+
+- (void)dealloc {
+    if (_webView) {
+        if(self.webView.scrollView.delegate)self.webView.scrollView.delegate = nil;
+        if(self.webView.navigationDelegate) self.webView.navigationDelegate = nil;
+        if(self.webView.UIDelegate) self.webView.UIDelegate = nil;
+        [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+        [self pauseHtmlMusic];
+        [self.webView.configuration.userContentController removeAllUserScripts];
+        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kJSPayFunction];
+        [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kJSCloseFunction];
+    }
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - public
+/** 重新加载 */
+- (void)reload_WebView {
+    isReload_webView = true;
+    [self.webView reload];
+}
+
+/** 重新加载网页,忽略缓存 */
+- (void)reload_FromOrigin {
+    isReload_webView = true;
+    [self.webView reloadFromOrigin];
+}
+
+- (void)setBottomShow:(BOOL)bottomShow {
+    _bottomShow = bottomShow;
+}
+
+- (void)setNavItemStyle:(NSInteger)navItemStyle {
+    _navItemStyle = navItemStyle;
+}
+
+- (void)loadRequestURL:(NSMutableURLRequest *)request {
+     NSString *Domain = request.URL.host;
+    _webView = _webView ? _webView : self.webView;
+    /** 插入cookies  */
 //    if (Domain)[self.config.userContentController addUserScript:[self searchCookieForUserScriptWithDomain:Domain]];
 //    if (Domain)[request setValue:[LZMWebViewHelper phpCookieStringWithDomain:Domain] forHTTPHeaderField:@"Cookie"];
-//    /** 重置空白界面 */
-//    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-//    [_webView loadRequest:request];
-//}
-//
-//- (void)loadLocalHTMLWithFileName:(NSString *)htmlName {
-//    NSString *path = [[NSBundle mainBundle] bundlePath];
-//    NSURL    *baseURL = [NSURL fileURLWithPath:path];
-//    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html"];
-//    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath
-//                                                    encoding:NSUTF8StringEncoding
-//                                                       error:nil];
-//    [self.webView loadHTMLString:htmlCont baseURL:baseURL];
-//}
-//
-//- (void)loadRequestURL:(NSMutableURLRequest *)request params:(NSDictionary *)params {
-//    NSURL *URLString = [LZMWebViewHelper generateURL:request.URL.absoluteString params:params];
-//    request.URL = URLString;
-//    [self loadRequestURL:request];
-//}
-//
-//- (void)loadRequestURLStr:(NSString *)currentURLString naviTitle:(NSString *)title {
-//    self.currentURLString = @"";
-//    self.currentURLString = currentURLString.blankAndline_handle;
-//    if ([self.currentURLString containsString:@"$t"] || [self.currentURLString containsString:@"$p"]) {
-//        NSData *phoneData = [UserConfigManage.phone dataUsingEncoding:NSUTF8StringEncoding];
-//        NSString *phoneBase64 = [phoneData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-//        self.currentURLString = [self.currentURLString stringByReplacingOccurrencesOfString:@"$t" withString:UserConfigManage.token];
-//        self.currentURLString = [self.currentURLString stringByReplacingOccurrencesOfString:@"$p" withString:phoneBase64];
-//    }
-//    NSString *encodeUrl = [self.currentURLString URLEncodedString];
-//    self.currentURLString = encodeUrl;
-//    self.naviTitle = title;
-//
-//    /** test url */
-//    //self.currentURLString = @"https://test4dev.oss-cn-shenzhen.aliyuncs.com/webview/index.html";
-//}
-//
-//- (void)clearWebViewAllCache_Finish:(void (^)(BOOL, NSError * _Nonnull))block {
-//    [LZMWebViewHelper clearWebAllCacheFinish:block];
-//}
-//
+    /** 重置空白界面 */
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    [_webView loadRequest:request];
+}
+
+- (void)loadLocalHTMLWithFileName:(NSString *)htmlName {
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL    *baseURL = [NSURL fileURLWithPath:path];
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html"];
+    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:nil];
+    [self.webView loadHTMLString:htmlCont baseURL:baseURL];
+}
+
+- (void)loadRequestURL:(NSMutableURLRequest *)request params:(NSDictionary *)params {
+    NSURL *URLString = [LZMWebViewHelper generateURL:request.URL.absoluteString params:params];
+    request.URL = URLString;
+    [self loadRequestURL:request];
+}
+
+- (void)loadRequestURLStr:(NSString *)currentURLString naviTitle:(NSString *)title {
+    self.currentURLString = @"";
+    self.currentURLString = currentURLString;
+    NSString *encodeUrl = [self.currentURLString URLEncodedString];
+    self.currentURLString = encodeUrl;
+    self.naviTitle = title;
+
+    /** test url */
+    //self.currentURLString = @"https://test4dev.oss-cn-shenzhen.aliyuncs.com/webview/index.html";
+}
+
+- (void)clearWebViewAllCache_Finish:(void (^)(BOOL, NSError * _Nonnull))block {
+    [LZMWebViewHelper clearWebAllCacheFinish:block];
+}
+
 #pragma mark - http
 - (void)webview_LoadRequest {
     if (!self.currentURLString) {return;}
@@ -170,25 +164,25 @@ static BOOL isReload_webView = NO;
     [_webView loadRequest:request];
 }
 
-//#pragma mark - observe
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-//    if (object == self.webView && [keyPath isEqualToString:@"estimatedProgress"]) {
-//        CGFloat newprogress = [[change objectForKey:NSKeyValueChangeNewKey] doubleValue];
-//        if (newprogress == 1) {
-//            self.webviewProgressView.hidden = YES;
-//            [self.webviewProgressView setProgress:0 animated:NO];
-//        }else {
-//            self.webviewProgressView.hidden = NO;
-//            [self.webviewProgressView setProgress:newprogress animated:YES];
-//        }
-//    }
-//}
-//
-//#pragma mark - incident
-//- (void)clickNavBack {
-//    self.webView.canGoBack ? [self.webView goBack] : [super clickNavBack];
-//}
-//
+#pragma mark - observe
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (object == self.webView && [keyPath isEqualToString:@"estimatedProgress"]) {
+        CGFloat newprogress = [[change objectForKey:NSKeyValueChangeNewKey] doubleValue];
+        if (newprogress == 1) {
+            self.webviewProgressView.hidden = YES;
+            [self.webviewProgressView setProgress:0 animated:NO];
+        }else {
+            self.webviewProgressView.hidden = NO;
+            [self.webviewProgressView setProgress:newprogress animated:YES];
+        }
+    }
+}
+
+#pragma mark - incident
+- (void)clickNavBack {
+    self.webView.canGoBack ? [self.webView goBack] : [self popView_Controller];
+}
+
 - (void)clickNavBackTagType:(LZMWebViewNavViewTag)type {
     switch (type) {
         case LZMWebViewNavView_back:
@@ -198,7 +192,7 @@ static BOOL isReload_webView = NO;
             [self popView_Controller];
             break;
         case LZMWebViewNavView_phone:
-//            [LZMGeneralSupport makePhoneCall:kHomeServicesPhone];
+            [LZMSDKUtils makePhoneCall:@"10086"];
             break;
         case LZMWebViewNavView_share:{
 //            CustShareView *shareView = [CustShareView new];
@@ -218,59 +212,59 @@ static BOOL isReload_webView = NO;
      [self.navigationController popViewControllerAnimated:true];
 }
 
-//#pragma mark - private
+#pragma mark - private
 //- (WKUserScript *)searchCookieForUserScriptWithDomain:(NSString *)domain {
 //    NSString *cookie = [self jsCookieStringWithDomain:domain];
 //    WKUserScript * cookieScript = [[WKUserScript alloc] initWithSource: cookie injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
 //    return cookieScript;
 //}
-//
-//- (NSString *)jsCookieStringWithDomain:(NSString *)domain {
-//    @autoreleasepool {
-//        NSMutableString *cookieSting = [NSMutableString string];
-//        NSArray *cookieArr = [LZMWebViewHelper sharedHTTPCookieStorage];
-//        for (NSHTTPCookie *cookie in cookieArr) {
-//            if ([cookie.domain containsString:domain]) {
-//                [cookieSting appendString:[NSString stringWithFormat:@"document.cookie = '%@=%@';",cookie.name,cookie.value]];
-//            }
-//        }
-//        return cookieSting;
-//    }
-//}
-//
-///** 关闭Html声音 */
-//- (void)pauseHtmlMusic{
-//    self.webView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = NO;
-//    NSString *jsAudio = @"var vids = document.getElementsByTagName('audio'); for( var i = 0; i < vids.length; i++ ){vids.item(i).pause()}";
-//    [self.webView evaluateJavaScript:jsAudio completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-//    }];
-//}
-//
-///** 手势处理 */
-//- (void)gestureHandle {
-//    if (@available(iOS 11.0, *)){
-//        for (UIView* subview in self.webView.scrollView.subviews) {
-//            if ([subview isKindOfClass:NSClassFromString(@"WKContentView")]){
-//                for (UIGestureRecognizer* longPress in subview.gestureRecognizers) {
-//                    if ([longPress isKindOfClass:UILongPressGestureRecognizer.class]) {
-//                        [subview removeGestureRecognizer:longPress];
-//                    }
-//                }
-//            }
-//        }
-//    }else{
-//        for (UIView* subview in self.webView.scrollView.subviews) {
-//            if ([subview isKindOfClass:NSClassFromString(@"WKContentViewMinusAccessoryView")]){
-//                for (UIGestureRecognizer* longPress in subview.gestureRecognizers) {
-//                    if ([longPress isKindOfClass:UILongPressGestureRecognizer.class]) {
-//                        [subview removeGestureRecognizer:longPress];
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-//
+
+- (NSString *)jsCookieStringWithDomain:(NSString *)domain {
+    @autoreleasepool {
+        NSMutableString *cookieSting = [NSMutableString string];
+        NSArray *cookieArr = [LZMWebViewHelper sharedHTTPCookieStorage];
+        for (NSHTTPCookie *cookie in cookieArr) {
+            if ([cookie.domain containsString:domain]) {
+                [cookieSting appendString:[NSString stringWithFormat:@"document.cookie = '%@=%@';",cookie.name,cookie.value]];
+            }
+        }
+        return cookieSting;
+    }
+}
+
+/** 关闭Html声音 */
+- (void)pauseHtmlMusic{
+    self.webView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+    NSString *jsAudio = @"var vids = document.getElementsByTagName('audio'); for( var i = 0; i < vids.length; i++ ){vids.item(i).pause()}";
+    [self.webView evaluateJavaScript:jsAudio completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+    }];
+}
+
+/** 手势处理 */
+- (void)gestureHandle {
+    if (@available(iOS 11.0, *)){
+        for (UIView* subview in self.webView.scrollView.subviews) {
+            if ([subview isKindOfClass:NSClassFromString(@"WKContentView")]){
+                for (UIGestureRecognizer* longPress in subview.gestureRecognizers) {
+                    if ([longPress isKindOfClass:UILongPressGestureRecognizer.class]) {
+                        [subview removeGestureRecognizer:longPress];
+                    }
+                }
+            }
+        }
+    }else{
+        for (UIView* subview in self.webView.scrollView.subviews) {
+            if ([subview isKindOfClass:NSClassFromString(@"WKContentViewMinusAccessoryView")]){
+                for (UIGestureRecognizer* longPress in subview.gestureRecognizers) {
+                    if ([longPress isKindOfClass:UILongPressGestureRecognizer.class]) {
+                        [subview removeGestureRecognizer:longPress];
+                    }
+                }
+            }
+        }
+    }
+}
+
 //#pragma mark - delegate
 ///** 页面加载完成 */
 //- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
@@ -363,69 +357,69 @@ static BOOL isReload_webView = NO;
 //    [self.webView loadRequest:request];
 //}
 //
-//#pragma mark - getter/setter
-//- (WKWebViewConfiguration *)config {
-//    if (!_config) {
-//        _config = [[WKWebViewConfiguration alloc] init];
-//        _config.userContentController = [[WKUserContentController alloc] init];
-//        _config.preferences = [[WKPreferences alloc] init];
-//        _config.preferences.minimumFontSize = 8;
-//        _config.preferences.javaScriptEnabled = YES;
-//        _config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-//        _config.processPool = [[WKProcessPool alloc] init];
-//        _config.allowsInlineMediaPlayback = YES;
-//        if (@available(iOS 9.0, *)) {
-//            _config.allowsAirPlayForMediaPlayback = YES;
-//        }
-//        /** CSS-Set */
-//        NSMutableString *javascript = [NSMutableString string];
-//        NSString *css = @""; //@"body{-webkit-user-select:none;-webkit-user-drag:none;}";
-//        [javascript appendString:@"var style = document.createElement('style');"];
-//        [javascript appendString:@"style.type = 'text/css';"];
-//        [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
-//        [javascript appendString:@"style.appendChild(cssContent);"];
-//        [javascript appendString:@"document.body.appendChild(style);"];
-//
-//        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-//        [_config.userContentController addUserScript:noneSelectScript];
-//        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSPayFunction];
-//        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSCloseFunction];
-//        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSRefreshTokenFunction];
-//        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSGetUserInfoFunction];
-//        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSRequestScanQrCodeFunction];
-//    }
-//    return _config;
-//}
-//
-//- (WKWebView *)webView {
-//    if (!_webView) {
-//        _webView = [[WKWebView alloc] initWithFrame:CGRectMake( 0, 0, LZMDevWidth, LZMDevHeight - SafeAreaTopHeight) configuration:self.config];
-//        _webView.backgroundColor = LZMColor(@"C11");
-//        _webView.UIDelegate = self;
-//        _webView.scrollView.delegate = self;
-//        _webView.navigationDelegate = self;
-//        _webView.scrollView.bounces = YES;
-//        _webView.multipleTouchEnabled = YES;
-//        _webView.userInteractionEnabled = YES;
-//        _webView.allowsBackForwardNavigationGestures = YES;
-//        _webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
-//        _webView.scrollView.showsVerticalScrollIndicator = YES;
-//        _webView.scrollView.showsHorizontalScrollIndicator = NO;
-//        [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
-//    }
-//    return _webView;
-//}
-//
-//- (UIProgressView *)webviewProgressView {
-//    if (!_webviewProgressView) {
-//        _webviewProgressView = [[UIProgressView alloc] init];
-//        _webviewProgressView.tintColor = LZMColor(@"C1");
-//        _webviewProgressView.trackTintColor = LZMColor(@"C11");
-//        _webviewProgressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    }
-//    return _webviewProgressView;
-//}
-//
+#pragma mark - getter/setter
+- (WKWebViewConfiguration *)config {
+    if (!_config) {
+        _config = [[WKWebViewConfiguration alloc] init];
+        _config.userContentController = [[WKUserContentController alloc] init];
+        _config.preferences = [[WKPreferences alloc] init];
+        _config.preferences.minimumFontSize = 8;
+        _config.preferences.javaScriptEnabled = YES;
+        _config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+        _config.processPool = [[WKProcessPool alloc] init];
+        _config.allowsInlineMediaPlayback = YES;
+        if (@available(iOS 9.0, *)) {
+            _config.allowsAirPlayForMediaPlayback = YES;
+        }
+        /** CSS-Set */
+        NSMutableString *javascript = [NSMutableString string];
+        NSString *css = @""; //@"body{-webkit-user-select:none;-webkit-user-drag:none;}";
+        [javascript appendString:@"var style = document.createElement('style');"];
+        [javascript appendString:@"style.type = 'text/css';"];
+        [javascript appendFormat:@"var cssContent = document.createTextNode('%@');", css];
+        [javascript appendString:@"style.appendChild(cssContent);"];
+        [javascript appendString:@"document.body.appendChild(style);"];
+
+        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        [_config.userContentController addUserScript:noneSelectScript];
+        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSPayFunction];
+        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSCloseFunction];
+        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSRefreshTokenFunction];
+        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSGetUserInfoFunction];
+        [_config.userContentController addScriptMessageHandler:[[WkScriptMessageDelegate alloc] initWithDelegate:self] name:kJSRequestScanQrCodeFunction];
+    }
+    return _config;
+}
+
+- (WKWebView *)webView {
+    if (!_webView) {
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake( 0, 0, LZMDevWidth, LZMDevHeight - SafeAreaTopHeight) configuration:self.config];
+        _webView.backgroundColor = LZMColor_C10;
+        _webView.UIDelegate = self;
+        _webView.scrollView.delegate = self;
+        _webView.navigationDelegate = self;
+        _webView.scrollView.bounces = YES;
+        _webView.multipleTouchEnabled = YES;
+        _webView.userInteractionEnabled = YES;
+        _webView.allowsBackForwardNavigationGestures = YES;
+        _webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+        _webView.scrollView.showsVerticalScrollIndicator = YES;
+        _webView.scrollView.showsHorizontalScrollIndicator = NO;
+        [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
+    }
+    return _webView;
+}
+
+- (UIProgressView *)webviewProgressView {
+    if (!_webviewProgressView) {
+        _webviewProgressView = [[UIProgressView alloc] init];
+        _webviewProgressView.tintColor = LZMColor_C1;
+        _webviewProgressView.trackTintColor = LZMColor_C10;
+        _webviewProgressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _webviewProgressView;
+}
+
 - (LZMWebViewNavView *)navView {
     if (!_navView) {
         _navView = [[LZMWebViewNavView alloc]initWithFrame:CGRectMake(0, 0, LZMDevWidth, SafeAreaTopHeight) itemStyle:self.navItemStyle];

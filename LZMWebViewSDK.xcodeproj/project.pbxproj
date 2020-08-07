@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		29E1886024DD4BFB00AA9AF3 /* LZMWebViewSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1885E24DD4BFB00AA9AF3 /* LZMWebViewSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29E1886824DD4C3F00AA9AF3 /* LZMTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E1886624DD4C3F00AA9AF3 /* LZMTestViewController.m */; };
-		29E1886924DD4C3F00AA9AF3 /* LZMTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1886724DD4C3F00AA9AF3 /* LZMTestViewController.h */; };
+		29E1886924DD4C3F00AA9AF3 /* LZMTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1886724DD4C3F00AA9AF3 /* LZMTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29E1886B24DD4C8C00AA9AF3 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 29E1886A24DD4C8C00AA9AF3 /* PrefixHeader.pch */; };
 		29E1886F24DD4CD100AA9AF3 /* LZMSDKUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1886D24DD4CD100AA9AF3 /* LZMSDKUtils.h */; };
 		29E1887024DD4CD100AA9AF3 /* LZMSDKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E1886E24DD4CD100AA9AF3 /* LZMSDKUtils.m */; };
-		29E1887424DD4D8300AA9AF3 /* LZMWebSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1887224DD4D8300AA9AF3 /* LZMWebSDK.h */; };
+		29E1887424DD4D8300AA9AF3 /* LZMWebSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1887224DD4D8300AA9AF3 /* LZMWebSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29E1887524DD4D8300AA9AF3 /* LZMWebSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E1887324DD4D8300AA9AF3 /* LZMWebSDK.m */; };
 		29E1887B24DD4E1600AA9AF3 /* LZMWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E1887724DD4E1600AA9AF3 /* LZMWebController.m */; };
 		29E1887C24DD4E1600AA9AF3 /* LZMWebViewNavView.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E1887824DD4E1600AA9AF3 /* LZMWebViewNavView.h */; };
@@ -28,6 +28,14 @@
 		29E1889A24DD4E3C00AA9AF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E1889924DD4E3C00AA9AF3 /* main.m */; };
 		29E1889E24DD4E4700AA9AF3 /* LZMWebViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E1885B24DD4BFB00AA9AF3 /* LZMWebViewSDK.framework */; };
 		29E1889F24DD4E4700AA9AF3 /* LZMWebViewSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29E1885B24DD4BFB00AA9AF3 /* LZMWebViewSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		29E188A324DD4FF700AA9AF3 /* LZMWebViewSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 29E1887F24DD4E2200AA9AF3 /* LZMWebViewSDK.bundle */; };
+		29E188A624DD509500AA9AF3 /* DemoSDKDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188A524DD509500AA9AF3 /* DemoSDKDelegate.m */; };
+		29E188A924DD53CE00AA9AF3 /* LZMWebViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E188A724DD53CE00AA9AF3 /* LZMWebViewHelper.h */; };
+		29E188AA24DD53CE00AA9AF3 /* LZMWebViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188A824DD53CE00AA9AF3 /* LZMWebViewHelper.m */; };
+		29E188AD24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E188AB24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.h */; };
+		29E188AE24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188AC24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m */; };
+		29E188B124DD563200AA9AF3 /* WkScriptMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188AF24DD563200AA9AF3 /* WkScriptMessageDelegate.m */; };
+		29E188B224DD563200AA9AF3 /* WkScriptMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E188B024DD563200AA9AF3 /* WkScriptMessageDelegate.h */; };
 		A2650827C57B2AC1589387FC /* Pods_LZMWebViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCB4890F547B05B60E10968 /* Pods_LZMWebViewSDK.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +90,14 @@
 		29E1889624DD4E3C00AA9AF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29E1889824DD4E3C00AA9AF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E1889924DD4E3C00AA9AF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29E188A424DD509500AA9AF3 /* DemoSDKDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoSDKDelegate.h; sourceTree = "<group>"; };
+		29E188A524DD509500AA9AF3 /* DemoSDKDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoSDKDelegate.m; sourceTree = "<group>"; };
+		29E188A724DD53CE00AA9AF3 /* LZMWebViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZMWebViewHelper.h; sourceTree = "<group>"; };
+		29E188A824DD53CE00AA9AF3 /* LZMWebViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZMWebViewHelper.m; sourceTree = "<group>"; };
+		29E188AB24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LZMWebViewSDK.h"; sourceTree = "<group>"; };
+		29E188AC24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LZMWebViewSDK.m"; sourceTree = "<group>"; };
+		29E188AF24DD563200AA9AF3 /* WkScriptMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WkScriptMessageDelegate.m; sourceTree = "<group>"; };
+		29E188B024DD563200AA9AF3 /* WkScriptMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WkScriptMessageDelegate.h; sourceTree = "<group>"; };
 		32146E5CA053AC3E1CBE3DA4 /* Pods-LZMWebViewSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LZMWebViewSDK.release.xcconfig"; path = "Target Support Files/Pods-LZMWebViewSDK/Pods-LZMWebViewSDK.release.xcconfig"; sourceTree = "<group>"; };
 		AFCB4890F547B05B60E10968 /* Pods_LZMWebViewSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LZMWebViewSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -147,6 +163,12 @@
 			children = (
 				29E1886D24DD4CD100AA9AF3 /* LZMSDKUtils.h */,
 				29E1886E24DD4CD100AA9AF3 /* LZMSDKUtils.m */,
+				29E188A724DD53CE00AA9AF3 /* LZMWebViewHelper.h */,
+				29E188A824DD53CE00AA9AF3 /* LZMWebViewHelper.m */,
+				29E188AB24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.h */,
+				29E188AC24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m */,
+				29E188B024DD563200AA9AF3 /* WkScriptMessageDelegate.h */,
+				29E188AF24DD563200AA9AF3 /* WkScriptMessageDelegate.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -183,6 +205,8 @@
 				29E1889524DD4E3C00AA9AF3 /* LaunchScreen.storyboard */,
 				29E1889824DD4E3C00AA9AF3 /* Info.plist */,
 				29E1889924DD4E3C00AA9AF3 /* main.m */,
+				29E188A424DD509500AA9AF3 /* DemoSDKDelegate.h */,
+				29E188A524DD509500AA9AF3 /* DemoSDKDelegate.m */,
 			);
 			path = LZMWebViewSDKExample;
 			sourceTree = "<group>";
@@ -213,8 +237,11 @@
 			files = (
 				29E1887D24DD4E1600AA9AF3 /* LZMWebController.h in Headers */,
 				29E1887424DD4D8300AA9AF3 /* LZMWebSDK.h in Headers */,
+				29E188AD24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.h in Headers */,
 				29E1886024DD4BFB00AA9AF3 /* LZMWebViewSDK.h in Headers */,
 				29E1886F24DD4CD100AA9AF3 /* LZMSDKUtils.h in Headers */,
+				29E188A924DD53CE00AA9AF3 /* LZMWebViewHelper.h in Headers */,
+				29E188B224DD563200AA9AF3 /* WkScriptMessageDelegate.h in Headers */,
 				29E1886924DD4C3F00AA9AF3 /* LZMTestViewController.h in Headers */,
 				29E1886B24DD4C8C00AA9AF3 /* PrefixHeader.pch in Headers */,
 				29E1887C24DD4E1600AA9AF3 /* LZMWebViewNavView.h in Headers */,
@@ -311,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E188A324DD4FF700AA9AF3 /* LZMWebViewSDK.bundle in Resources */,
 				29E1889724DD4E3C00AA9AF3 /* LaunchScreen.storyboard in Resources */,
 				29E1889424DD4E3C00AA9AF3 /* Assets.xcassets in Resources */,
 				29E1889224DD4E3B00AA9AF3 /* Main.storyboard in Resources */,
@@ -352,6 +380,9 @@
 				29E1887024DD4CD100AA9AF3 /* LZMSDKUtils.m in Sources */,
 				29E1887524DD4D8300AA9AF3 /* LZMWebSDK.m in Sources */,
 				29E1887E24DD4E1600AA9AF3 /* LZMWebViewNavView.m in Sources */,
+				29E188B124DD563200AA9AF3 /* WkScriptMessageDelegate.m in Sources */,
+				29E188AA24DD53CE00AA9AF3 /* LZMWebViewHelper.m in Sources */,
+				29E188AE24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m in Sources */,
 				29E1887B24DD4E1600AA9AF3 /* LZMWebController.m in Sources */,
 				29E1886824DD4C3F00AA9AF3 /* LZMTestViewController.m in Sources */,
 			);
@@ -363,6 +394,7 @@
 			files = (
 				29E1888F24DD4E3A00AA9AF3 /* ViewController.m in Sources */,
 				29E1888924DD4E3A00AA9AF3 /* AppDelegate.m in Sources */,
+				29E188A624DD509500AA9AF3 /* DemoSDKDelegate.m in Sources */,
 				29E1889A24DD4E3C00AA9AF3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIFont *)getFontWithSize:(CGFloat)size weightType:(LZMFontWeightType)type;
 
++ (void)makePhoneCall:(NSString *)phoneNum;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,0 +1,6 @@
+framework module Pods_LZMWebViewSDK {
+  umbrella header "Pods-LZMWebViewSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

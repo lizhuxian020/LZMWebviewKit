@@ -1,0 +1,62 @@
+//
+//  PrefixHeader.pch
+//  LZMWebViewSDK
+//
+//  Created by Main on 2020/8/7.
+//  Copyright © 2020 SZ_LZM. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+/******************本SDK独用**************/
+#import "LZMSDKUtils.h"
+#import "LZMWebSDK.h"
+//#import "SDK_Private_Define.h"
+
+/******************依赖第三方**************/
+#import <Masonry/Masonry.h>
+
+/******************Color**************/
+#define LZMColor(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \
+                green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 \
+                 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:1.0]
+#define kNavi_BG_Color LZMColor(0xF3F8F9)
+#define LZMColor_C4 LZMColor(0x333333)
+#define LZMColor_C5 LZMColor(0x666666)
+#define LZMColor_C6 LZMColor(0x999999)
+#define LZMColor_C10 LZMColor(0xEAF0F0)
+
+/******************Util Marco**************/
+#define kWeakSelf __weak typeof(self) weakSelf = self;
+#define kStrongSelf __strong typeof(weakSelf) strongSelf = weakSelf;
+#define SDK_LOG(...) NSLog(@"%s %d \n %@\n\n", __func__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+
+/*************************** 尺寸/屏幕适配 *******************************/
+/** 通用尺寸适配 */
+#define LZMUIScreen_iphone6 375.f
+/** 设备宽度 */
+#define LZMDevWidth  [UIScreen mainScreen].bounds.size.width
+/** 设备高度 */
+#define LZMDevHeight [UIScreen mainScreen].bounds.size.height
+/** 屏幕宽度缩放 */
+#define LZMWIDTH_SCALE (LZMDevWidth / LZMUIScreen_iphone6)
+
+/** iphoneX系列 */
+#define isIPhoneXSeries  \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+/** 适配导航栏 */
+#define SafeAreaTopHeight (isIPhoneXSeries ? 88.f : 64.f)
+/** 适配底部角无tabBar时 */
+#define SafeAreaBottomHeight (isIPhoneXSeries ? 34.f : 0.f)
+
+#endif /* PrefixHeader_pch */

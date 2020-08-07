@@ -27,7 +27,10 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.navigationController pushViewController:[LZMTestViewController new] animated:YES];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test.html" ofType:@""];
+    [_webSDK loadHTMLWithPath:path withCurrentNavigationVC:self.navigationController];
+    
+    
 }
 
 

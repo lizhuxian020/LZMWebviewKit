@@ -7,6 +7,7 @@
 //
 
 #import "LZMWebSDK.h"
+#import "LZMWebController.h"
 
 @interface LZMWebSDK ()
 
@@ -24,8 +25,14 @@
     return sdk;
 }
 
-- (void)loadURL:(NSURL *)url {
+- (void)loadURL:(NSURL *)url withCurrentNavigationVC:(UINavigationController *)naviVC {
     
+}
+
+- (void)loadHTMLWithPath:(NSString *)html_path withCurrentNavigationVC:(UINavigationController *)naviVC {
+    LZMWebController *vc = [LZMWebController new];
+    [vc loadLocalHTMLWithFileName:html_path];
+    [naviVC pushViewController:vc animated:YES];
 }
 
 @end

@@ -127,12 +127,14 @@ static BOOL isReload_webView = NO;
 }
 
 - (void)loadLocalHTMLWithFileName:(NSString *)htmlName {
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSURL    *baseURL = [NSURL fileURLWithPath:path];
-    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:htmlName ofType:@"html"];
-    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath
+    NSURL    *baseURL = [NSURL fileURLWithPath:htmlName];
+    NSError *error = nil;
+    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlName
                                                     encoding:NSUTF8StringEncoding
-                                                       error:nil];
+                                                       error:&error];
+    if (error) {
+        NSLog(@"%@", error);
+    }
     [self.webView loadHTMLString:htmlCont baseURL:baseURL];
 }
 

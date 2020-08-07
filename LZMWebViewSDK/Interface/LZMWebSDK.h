@@ -25,7 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)startWithDelegate:(id<LZMWebSDKDelegate>)delegate;
 
-- (void)loadURL:(NSURL *)url;
+- (void)loadURL:(NSURL *)url withCurrentNavigationVC:(UINavigationController *)naviVC;
+
+- (void)loadHTMLWithPath:(NSString *)html_path withCurrentNavigationVC:(UINavigationController *)naviVC;
 
 @end
 

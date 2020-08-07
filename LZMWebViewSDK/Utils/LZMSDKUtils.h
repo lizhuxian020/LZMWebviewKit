@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)makePhoneCall:(NSString *)phoneNum;
 
+- (NSString *)convertToJsonData:(NSDictionary *)dict;
+
 @end
 
 NS_ASSUME_NONNULL_END

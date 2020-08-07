@@ -36,6 +36,8 @@
 		29E188AE24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188AC24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m */; };
 		29E188B124DD563200AA9AF3 /* WkScriptMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188AF24DD563200AA9AF3 /* WkScriptMessageDelegate.m */; };
 		29E188B224DD563200AA9AF3 /* WkScriptMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E188B024DD563200AA9AF3 /* WkScriptMessageDelegate.h */; };
+		29E188B524DD56F100AA9AF3 /* LZMWebViewFunctionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E188B324DD56F100AA9AF3 /* LZMWebViewFunctionHandle.h */; };
+		29E188B624DD56F100AA9AF3 /* LZMWebViewFunctionHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E188B424DD56F100AA9AF3 /* LZMWebViewFunctionHandle.m */; };
 		A2650827C57B2AC1589387FC /* Pods_LZMWebViewSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCB4890F547B05B60E10968 /* Pods_LZMWebViewSDK.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +100,8 @@
 		29E188AC24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LZMWebViewSDK.m"; sourceTree = "<group>"; };
 		29E188AF24DD563200AA9AF3 /* WkScriptMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WkScriptMessageDelegate.m; sourceTree = "<group>"; };
 		29E188B024DD563200AA9AF3 /* WkScriptMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WkScriptMessageDelegate.h; sourceTree = "<group>"; };
+		29E188B324DD56F100AA9AF3 /* LZMWebViewFunctionHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZMWebViewFunctionHandle.h; sourceTree = "<group>"; };
+		29E188B424DD56F100AA9AF3 /* LZMWebViewFunctionHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZMWebViewFunctionHandle.m; sourceTree = "<group>"; };
 		32146E5CA053AC3E1CBE3DA4 /* Pods-LZMWebViewSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LZMWebViewSDK.release.xcconfig"; path = "Target Support Files/Pods-LZMWebViewSDK/Pods-LZMWebViewSDK.release.xcconfig"; sourceTree = "<group>"; };
 		AFCB4890F547B05B60E10968 /* Pods_LZMWebViewSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LZMWebViewSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -169,6 +173,8 @@
 				29E188AC24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.m */,
 				29E188B024DD563200AA9AF3 /* WkScriptMessageDelegate.h */,
 				29E188AF24DD563200AA9AF3 /* WkScriptMessageDelegate.m */,
+				29E188B324DD56F100AA9AF3 /* LZMWebViewFunctionHandle.h */,
+				29E188B424DD56F100AA9AF3 /* LZMWebViewFunctionHandle.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 				29E1887D24DD4E1600AA9AF3 /* LZMWebController.h in Headers */,
 				29E1887424DD4D8300AA9AF3 /* LZMWebSDK.h in Headers */,
 				29E188AD24DD54B500AA9AF3 /* NSString+LZMWebViewSDK.h in Headers */,
+				29E188B524DD56F100AA9AF3 /* LZMWebViewFunctionHandle.h in Headers */,
 				29E1886024DD4BFB00AA9AF3 /* LZMWebViewSDK.h in Headers */,
 				29E1886F24DD4CD100AA9AF3 /* LZMSDKUtils.h in Headers */,
 				29E188A924DD53CE00AA9AF3 /* LZMWebViewHelper.h in Headers */,
@@ -377,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E188B624DD56F100AA9AF3 /* LZMWebViewFunctionHandle.m in Sources */,
 				29E1887024DD4CD100AA9AF3 /* LZMSDKUtils.m in Sources */,
 				29E1887524DD4D8300AA9AF3 /* LZMWebSDK.m in Sources */,
 				29E1887E24DD4E1600AA9AF3 /* LZMWebViewNavView.m in Sources */,

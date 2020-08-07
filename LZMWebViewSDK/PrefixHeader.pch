@@ -17,6 +17,8 @@
 #import "LZMSDKUtils.h"
 #import "LZMWebSDK.h"
 #import "NSString+LZMWebViewSDK.h"
+
+#import <WebKit/WebKit.h>
 //#import "SDK_Private_Define.h"
 
 /******************依赖第三方**************/

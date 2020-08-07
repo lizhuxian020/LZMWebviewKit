@@ -10,7 +10,7 @@
 #import "WkScriptMessageDelegate.h"
 #import "LZMWebViewNavView.h"
 #import "LZMWebViewHelper.h"
-//#import "LZMWebViewFunctionHandle.h"
+#import "LZMWebViewFunctionHandle.h"
 //#import "LZMWebPayService.h"
 
 static NSString *const kJSPayFunction          = @"pay";
@@ -310,21 +310,21 @@ static BOOL isReload_webView = NO;
 //    }
 //}
 //
-///** 页面捕捉回调 */
-//- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-//    WEAK_SELF(self);
-//    if ([message.name isEqualToString:kJSPayFunction]){
-//        if (self.webViewPayBlock) {
-//            STRONG_SELF(self);
-//            _pool = self.webView.configuration.processPool;
-//            self.webViewPayBlock(message.body, self);
-//        }
-//    }else {
-//        LZMWebViewFunctionHandle *functionHandle = [LZMWebViewFunctionHandle new];
-//        NSDictionary *dictP = @{@"webView" : self.webView,@"ctr" : self};
-//        [functionHandle handleJsFunctionWitMethdName:message.name withjsCallbackName:message.body forObjDict:dictP];
-//    }
-//}
+/** 页面捕捉回调 */
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    kWeakSelf
+    if ([message.name isEqualToString:kJSPayFunction]){
+        if (self.webViewPayBlock) {
+            kStrongSelf
+            _pool = strongSelf.webView.configuration.processPool;
+            self.webViewPayBlock(message.body, strongSelf);
+        }
+    }else {
+        LZMWebViewFunctionHandle *functionHandle = [LZMWebViewFunctionHandle new];
+        NSDictionary *dictP = @{@"webView" : self.webView,@"ctr" : self};
+        [functionHandle handleJsFunctionWitMethdName:message.name withjsCallbackName:message.body forObjDict:dictP];
+    }
+}
 //
 ///** 页面发送请求之前，决定是否跳转 */
 //- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
